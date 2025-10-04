@@ -2,3 +2,4 @@
 .env
 
 game.db
+__pycache__
