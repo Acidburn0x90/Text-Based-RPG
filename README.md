@@ -64,28 +64,74 @@ python main.py
 Text-Based-RPG/
 ├── src/                    # Source code modules
 │   ├── __init__.py
-│   ├── character.py        # Character classes and logic
-│   ├── combat.py          # Combat system
-│   ├── inventory.py       # Inventory management
-│   ├── story.py           # Story and dialogue system
-│   └── utils.py           # Utility functions
+│   ├── core/              # Core game systems
+│   │   ├── __init__.py
+│   │   ├── game_engine.py      # Main game loop and state management
+│   │   ├── database.py         # Database models and operations
+│   │   └── events.py           # Event system for game actions
+│   ├── entities/          # Game entities
+│   │   ├── __init__.py
+│   │   ├── player.py           # Player class and methods
+│   │   ├── npc.py              # Non-player characters
+│   │   ├── items.py            # Items and equipment
+│   │   └── locations.py        # Game world locations
+│   ├── systems/           # Game systems
+│   │   ├── __init__.py
+│   │   ├── combat.py           # Combat mechanics
+│   │   ├── inventory.py        # Inventory management
+│   │   ├── progression.py      # Level/XP system
+│   │   └── dialogue.py         # NPC dialogue system
+│   ├── ai/                # AI integration
+│   │   ├── __init__.py
+│   │   ├── core.py             # AI core functions (existing)
+│   │   ├── model.py            # AI models (existing)
+│   │   ├── game_master.py      # AI game master logic
+│   │   └── content_generator.py # Dynamic content generation
+│   ├── ui/                # User interface
+│   │   ├── __init__.py
+│   │   ├── terminal_ui.py      # Terminal-based UI
+│   │   ├── menus.py            # Game menus
+│   │   └── display.py          # Display utilities
+│   └── utils/             # Utilities
+│       ├── __init__.py
+│       ├── config.py           # Configuration management
+│       ├── save_load.py        # Save/load functionality
+│       └── helpers.py          # General helper functions
 ├── data/                   # Game data files
 │   ├── characters.json    # Character templates
 │   ├── items.json         # Item definitions
-│   └── stories.json       # Story content
+│   ├── locations.json     # World locations
+│   └── dialogue.json      # Dialogue trees
 ├── assets/                 # Game assets
-│   └── ascii_art.txt      # ASCII art for the game
+│   └── ascii_art/         # ASCII art files
+├── saves/                  # Save game files
 ├── tests/                  # Unit tests
 │   ├── __init__.py
-│   ├── test_character.py
-│   ├── test_combat.py
-│   └── test_inventory.py
-├── saves/                  # Save game files
+│   ├── test_core/         # Core system tests
+│   │   └── __init__.py
+│   ├── test_entities/     # Entity tests
+│   │   └── __init__.py
+│   ├── test_systems/      # System tests
+│   │   └── __init__.py
+│   └── fixtures/          # Test data
+├── docs/                   # Documentation
+│   ├── api.md             # API documentation
+│   ├── game_design.md     # Game design document
+│   └── development.md     # Development guide
+├── scripts/                # Utility scripts
+│   ├── setup_db.py        # Database setup
+│   └── generate_content.py # Content generation tools
 ├── venv/                   # Virtual environment (ignored)
 ├── main.py                 # Main game entry point
+├── UI.py                   # Legacy UI code (to be refactored)
+├── game-loop.prompt.yml    # AI game master configuration
+├── game.db                 # SQLite database file
 ├── requirements.txt        # Project dependencies
+├── requirements-dev.txt    # Development dependencies
+├── .env.example           # Environment variables example
 ├── .gitignore             # Git ignore file
 ├── .pre-commit-config.yaml # Pre-commit hooks
+├── pyproject.toml         # Python project configuration
 ├── Dockerfile             # Docker configuration
 ├── Makefile               # Build and development commands
 └── README.md              # This file
