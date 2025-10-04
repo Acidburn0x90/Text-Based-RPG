@@ -1,10 +1,11 @@
 class Location:
-    def __init__(self, name: str, location_id: int, description: str, items: list = None, exits: list = None):
+    def __init__(self, name: str, location_id: int, description: str, items: list = None, exits: list = None, asciiart: str = ""):
         self.name = name
         self.id = location_id
         self.description = description
         self.items = items if items is not None else []
         self.exits = exits if exits is not None else []
+        self.asciiart = asciiart
     
     def add_item(self, item: str):
         """Add an item to this location."""
@@ -42,7 +43,7 @@ class Location:
     
     def __repr__(self) -> str:
         """Developer representation of the location."""
-        return f"Location(name='{self.name}', id={self.id}, items={self.items}, exits={self.exits})"
+        return f"Location(name='{self.name}', id={self.id}, items={self.items}, exits={self.exits}, asciiart='{self.asciiart}')"
     
     def to_dict(self) -> dict:
         """Convert location to dictionary format."""
@@ -51,16 +52,19 @@ class Location:
             "ID": self.id,
             "description": self.description,
             "items": self.items,
-            "exits": self.exits
+            "exits": self.exits,
+            "asciiart": self.asciiart
         }
     
     @classmethod
     def from_dict(cls, data: dict):
         """Create a Location instance from dictionary data."""
-        return cls(
+        location = cls(
             name=data["name"],
             location_id=data["ID"],
             description=data["description"],
             items=data.get("items", []),
-            exits=data.get("exits", [])
+            exits=data.get("exits", []),
+            asciiart=data.get("asciiart", "")
         )
+        return location
