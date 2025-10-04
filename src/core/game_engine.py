@@ -23,15 +23,10 @@ class GameEngine:
         return self.running
     
     def render(self):
-<<<<<<< HEAD
-        renderer = UI(self.player)
+        renderer = UI()
         renderer.draw_map_outline()
         # Simple ASCII art string (random noise)
         ascii_art = ''.join(['@' if i % 2 == 0 else '#' for i in range(36 * 74)])
         renderer.draw_map_area(ascii_art)
-=======
-        renderer = UI()
-        renderer.draw_map_area()
->>>>>>> b1ccf1ad38e37da97c00733548805806b4643837
         renderer.draw_status_bar()
         renderer.draw_action_menu()
