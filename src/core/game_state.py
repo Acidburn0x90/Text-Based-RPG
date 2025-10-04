@@ -40,12 +40,11 @@ class GameState:
         except Exception as e:
             print(f"Error loading locations: {e}")
     
-    def get_current_location(self):
+    def get_current_location(self) -> Location:
         """Get a location by its ID."""
         for location in self.locations:
             if location.id == self.location:
                 return location
-        return None
         
     def move_player(self, new_location):
         self.player.location = new_location

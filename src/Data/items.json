@@ -1,0 +1,20 @@
+[{
+    "name":"Potion",
+    "ID":1,
+    "description":"",
+    "isDroppable":true,
+    "isUsable":true,
+    "damage":0,
+    "healing":10   
+},
+{
+    "name":"Dagger",
+    "ID":2,
+    "description":"",
+    "isDroppable":true,
+    "isUsable":false,
+    "healing":10,
+    "damage":10
+}
+
+]
