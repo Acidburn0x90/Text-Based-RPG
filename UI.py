@@ -1,54 +1,56 @@
-import blessed
+﻿import blessed
 
 term = blessed.Terminal()
 
-# Player's starting position
-x, y = 10, 5
+# --- Game State Data (put your game variables here) ---
+player_stats = {
+    "max_hp": 100,
+    "hp": 95,
+    "money": 120,
+    "location": "Whispering Woods"
+}
 
-# Game loop
+def draw_map_area():
+    """Draws the main game world view."""
+    # For now, we'll just draw a placeholder box.
+    # Later, you'll render your game map here.
+    map_height = term.height - 6
+    print(term.move_y(0)) # Move to the top
+    for i in range(map_height):
+        # This is where you would print each line of your map
+        print(f"Map line {i}" + term.clear_eol)
+
+def draw_status_bar():
+    """Draws the player's health, money, and location."""
+    # Define the line number for the status bar
+    bar_y = term.height - 5
+    stats = f"{term.red}Health: {player_stats["hp"]}/{player_stats["max_hp"]}{term.gold}    Gold:{player_stats['money']}{term.deepskyblue}    Location:{player_stats['location']}{term.snow}" 
+
+    print(term.snow + term.move_xy(0, bar_y + 1) + term.center(stats, fillchar="-"))
+    
+
+def draw_action_menu():
+    """Draws the available choices or messages for the player."""
+    menu_y = term.height - 3
+    
+    prompt = "What do you do?"
+    choices = "1) Move North   2) Check Inventory   3) Wait"
+    
+    print(term.move_xy(2, menu_y + 1) + term.bold(prompt))
+    print(term.move_xy(2, menu_y + 2) + choices)
+
+
+# --- Main Game Loop ---
 def main():
-    global x, y # Use the global x and y variables
-
-    # Use context managers to handle terminal state
     with term.fullscreen(), term.cbreak(), term.hidden_cursor():
-        # Clear the screen initially
-        print(term.home + term.clear)
-
         key = ''
-        # Main game loop: runs until 'q' is pressed
         while key.lower() != 'q':
-            print(term.home + term.clear)
-            # 1. DRAW THE SCENE
-            # Clear previous player position by printing a space
-            print(term.move_xy(x, y) + ' ')
+            # 1. DRAW EVERYTHING
+            print(term.home + term.clear) # Clear the screen
+            draw_map_area()
+            draw_status_bar()
+            draw_action_menu()
 
-            # Draw the player at the new position
-            player_char = term.bold_yellow('@')
-            print(term.move_xy(x, y) + player_char)
-
-            # Draw instructions
-            instructions = "Use arrow keys to move. Press 'q' to quit."
-            print(term.move_xy(0, term.height - 1) + term.center(instructions))
-
-
-            # 2. GET USER INPUT
-            key = term.inkey() # Wait for a key press
-
-            # 3. UPDATE GAME STATE
-            if key.is_sequence:
-                if key.name == "KEY_UP":
-                    y -= 1
-                elif key.name == "KEY_DOWN":
-                    y += 1
-                elif key.name == "KEY_LEFT":
-                    x -= 1
-                elif key.name == "KEY_RIGHT":
-                    x += 1
-
-            # Clamp player position to stay within screen bounds
-            x = max(0, min(x, term.width - 1))
-            y = max(0, min(y, term.height - 2)) # -2 to keep off instruction line
-
-
-if __name__ == "__main__":
-    main()
+            # 2. GET INPUT
+            # Put game logic here to handle choices
+            key = term.inkey()
