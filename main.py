@@ -1,4 +1,8 @@
 from peewee import *
+from ai.core import streamText
+from ai.model import google
+import os
+import asyncio
 
 db = SqliteDatabase('game.db')
 
@@ -11,8 +15,9 @@ class Player(BaseModel):
     level = IntegerField(default=1)
     experience = IntegerField(default=0)
 
+
 def main():
-    initialize_from_persist_environment()
+    asyncio.run(initialize_from_persist_environment())
     #This is the main game loop, as of not the global DB will be used.
     while True:
      #This will halt until user input is received
@@ -20,9 +25,10 @@ def main():
      update_environment()
      generative_content()
      persist_environment()
+     persist_environment()
 
     
-def initialize_from_persist_environment():
+async def initialize_from_persist_environment():
     db.connect()
     db.create_tables([Player])
 
@@ -34,6 +40,19 @@ def initialize_from_persist_environment():
 
 
     print(f"Welcome back, {user.name}!")
+
+    os.environ["OPENAI_API_KEY"] = "your-api-key"
+
+    async for chunk in streamText(
+        model=google("gemini-2.0-flash-exp"),
+        systemMessage="You are a creative writer.",
+        prompt="Write a short story about a robot."
+    ):
+        # chunk format: "0:{"text content"}\n"
+        if chunk.startswith("0:"):
+            import json
+            text = json.loads(chunk[2:])
+            print(text, end="", flush=True)
     #Get secrets from .env 
 
 def process_user_input():
