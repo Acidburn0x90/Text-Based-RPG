@@ -18,12 +18,12 @@ def main():
 def initialize_from_persist_environment():
     #Get secrets from .env 
     load_dotenv()
-    #Not needed?g
+    #Not needed?
     gemini_api_key = os.getenv(GEMINI_API_KEY)
     client = genai.Client()
 
     response = client.models.generate_content(
-        model="gemini-2,5-pro", contents="Respond with 123"
+        model="gemini-2,0-flash", contents="Respond with 123"
     )
     print(response.text)
 
