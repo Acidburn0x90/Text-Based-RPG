@@ -1,8 +1,15 @@
-import os
-from dotenv import load_dotenv
-from google import genai
+from peewee import *
 
+db = SqliteDatabase('game.db')
 
+class BaseModel(Model):
+    class Meta:
+        database = db
+
+class Player(BaseModel):
+    name = CharField()
+    level = IntegerField(default=1)
+    experience = IntegerField(default=0)
 
 def main():
     initialize_from_persist_environment()
@@ -16,16 +23,17 @@ def main():
 
     
 def initialize_from_persist_environment():
-    #Get secrets from .env 
-    load_dotenv()
-    #Not needed?g
-    gemini_api_key = os.getenv(GEMINI_API_KEY)
-    client = genai.Client()
+    db.connect()
+    db.create_tables([Player])
 
-    response = client.models.generate_content(
-        model="gemini-2,5-pro", contents="Respond with 123"
-    )
-    print(response.text)
+    user = Player.select().first()
+
+    if not user:
+        user = Player(name="Hero", level=0, experience=0)
+        user.save()
+
+
+    print(f"Welcome back, {user.name}!")
 
 def process_user_input():
     pass
