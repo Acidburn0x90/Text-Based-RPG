@@ -1,12 +1,14 @@
 from src.core.database import db, Player
 
+player = Player
+
 def initialize():
     db.connect()
     db.create_tables([Player])
 
-    user = Player.select().first()
-    if not user:
-        user = Player(name="Hero", level=0, experience=0)
-        user.save()
+    player = Player.select().first()
+    if not player:
+        player = Player(name="Hero", level=0, experience=0)
+        player.save()
 
-    print(f"Welcome back, {user.name}!")
+    print(f"Welcome back, {player.name}!")
