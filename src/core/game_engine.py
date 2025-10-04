@@ -1,5 +1,5 @@
 from src.core.game_state import global_game_state
-from src.ui.ui import UI
+from src.ui.ui import UI, term
 
 class GameEngine:
     def __init__(self):
@@ -8,14 +8,15 @@ class GameEngine:
     def start(self):
         self.running = True
         
-        while self.running:
-            # self.render()
-            print(global_game_state.locations)
-            command = input("Enter command: ").strip().lower()
-            if command in ['exit', 'quit']:
-                self.stop()
-            else:
-                print(f"Unknown command: {command}")
+        with term.fullscreen(), term.cbreak():
+            while self.running:
+                # self.render()
+                print(global_game_state.locations)
+                command = input("Enter command: ").strip().lower()
+                if command in ['exit', 'quit']:
+                    self.stop()
+                else:
+                    print(f"Unknown command: {command}")
 
     def stop(self):
         self.running = False

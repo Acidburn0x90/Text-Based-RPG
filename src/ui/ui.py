@@ -7,9 +7,8 @@ class UI:
     def __init__(self):
         self.map_height = 42
 
-
     def draw_map_outline(self):
-        print(term.home + term.clear + term.move_y(0))
+        print(term.home + term.clear + term.move_y(0) + term.hide_cursor)
         map_rows = 37
         map_cols = 75
         outline = "+" + "-" * (map_cols - 2) + "+"
@@ -41,6 +40,7 @@ class UI:
     
         print(term.move_xy(2, menu_y + 1) + term.bold(prompt))
         print(term.move_xy(2, menu_y + 2) + choices)
+        print(term.normal_cursor)
 
 
 
