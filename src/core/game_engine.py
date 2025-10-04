@@ -9,7 +9,8 @@ class GameEngine:
         self.running = True
         
         while self.running:
-            self.render()
+            # self.render()
+            print(global_game_state.locations)
             command = input("Enter command: ").strip().lower()
             if command in ['exit', 'quit']:
                 self.stop()
