@@ -1,11 +1,36 @@
 from src.core.database import db, Player
 from src.ui.ui import UI
 
-player = Player
+class GameEngine:
+    def __init__(self):
+        self.running = False
+        self.player = None
 
+    def initialize(self):
+        if db.is_closed():
+            db.connect()
+        db.create_tables([Player])
+
+        self.player = Player.select().first()
+        if not self.player:
+            self.player = Player(name="Hero", level=1, experience=0)
+            self.player.save()
+
+        print(f"Welcome back, {self.player.name}!")
+
+    def start(self):
+        self.initialize()
+        self.running = True
+
+    def stop(self):
+        self.running = False
+
+    def is_running(self):
+        return self.running
 
 def initialize():
-    db.connect()
+    if db.is_closed():
+        db.connect()
     db.create_tables([Player])
 
     player = Player.select().first()
@@ -14,5 +39,5 @@ def initialize():
         player.save()
 
     print(f"Welcome back, {player.name}!")
-    renderer = UI()
-    renderer.draw_map_area()
+    renderer = UI(player)
+    renderer.draw_status_bar()

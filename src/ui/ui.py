@@ -1,9 +1,10 @@
 ﻿import blessed
 term = blessed.Terminal()
+from src.core.database import Player
 
 class UI:
-    def __init__(self, user):
-        pass
+    def __init__(self, user: Player):
+        self.user = user
 
 
     def draw_map_area(self):
@@ -16,11 +17,7 @@ class UI:
     def draw_status_bar(self):
         # Define the line number for the status bar
         bar_y = term.height - 5
-<<<<<<< HEAD:UI.py
-        stats = f"{term.red}Health: {user.hp}/{user.hpmax}{term.gold}    Gold:{user.money}{term.deepskyblue}    Location:{user.location}{term.snow}" 
-=======
-        stats = f"{term.red}Health: {player.name}/{player_stats["max_hp"]}{term.gold}    Gold:{player_stats['money']}{term.deepskyblue}    Location:{player_stats['location']}{term.snow}" 
->>>>>>> 964f53b378a0325dfbc56a3a11f9ae680bf42951:src/ui/ui.py
+        stats = f"{term.red}Health: {self.user.hp}/{self.user.hpmax}{term.gold}    Gold:{self.user.money}{term.deepskyblue}    Location:{self.user.location}{term.snow}" 
         print(term.snow + term.move_xy(0, bar_y + 1) + term.center(stats, fillchar="-"))
 
     def draw_action_menu(self):
