@@ -34,6 +34,7 @@ def initialize_from_persist_environment():
 
 
     print(f"Welcome back, {user.name}!")
+    #Get secrets from .env 
 
 def process_user_input():
     pass
