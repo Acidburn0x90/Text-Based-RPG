@@ -8,7 +8,7 @@ class GameEngine:
     def start(self):
         self.running = True
         
-        with term.fullscreen(), term.cbreak():
+        with term.fullscreen():
             while self.running:
                 self.render()
                 command = input("Enter command: ").strip().lower()
