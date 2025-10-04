@@ -12,6 +12,6 @@ def initialize():
         player = Player(name="Hero", level=0, experience=0)
         player.save()
 
-    print(f"Welcome back, {user.name}!")
+    print(f"Welcome back, {player.name}!")
     renderer = UI()
     renderer.draw_map_area()
