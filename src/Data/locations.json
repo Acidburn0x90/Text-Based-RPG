@@ -3,14 +3,15 @@
         "name":"Castle courtyard",
         "ID":1,
         "description":"You are standing in a large, open-air courtyard. High stone walls surround you on all sides. A large wooden gate is to the north, and a door leads into the keep to the east.",
-        "items": ["dagger"], 
+        "items": ["dagger"],
+        "enemies": ["Bad Guy 1", "Bad Guy 2"],
         "exits":["east"]
     },
     {
         "name":"Boss Room",
         "ID":2,
         "description":"You have entered the Boss Room, a large, circular chamber carved into the very foundations of the castle. A towering, grotesque creature, all muscle and malice, stands in the center, its eyes fixed on you.",
-        "items": [], 
+        "items": ["Boss"], 
         "exits":["west"]
     }
 ]
