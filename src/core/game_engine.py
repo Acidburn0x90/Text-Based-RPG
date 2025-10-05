@@ -1,5 +1,6 @@
 from src.core.database import db, Player
 
+
 def initialize():
     db.connect()
     db.create_tables([Player])

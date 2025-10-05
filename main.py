@@ -19,10 +19,6 @@ def main():
      generative_content()
      persist_environment()
      persist_environment()
-
-
-     renderer = UI()
-     renderer.draw_map_area()
     
 
 
