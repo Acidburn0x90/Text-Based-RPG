@@ -10,14 +10,14 @@ class UI:
 
     def draw_map_outline(self):
         print(term.home + term.clear + term.move_y(0))
-        map_rows = 37
+        map_rows = min(37, term.height - 5)  # Ensure outline fits in terminal
         map_cols = 75
         outline = "+" + "-" * (map_cols - 2) + "+"
         print(term.move_xy(0, 1) + term.center(outline, fillchar=" "))
         for i in range(map_rows - 2):
             line = "|" + " " * (map_cols - 2) + "|"
             print(term.move_xy(0, 2 + i) + term.center(line, fillchar=" "))
-        print(term.move_xy(0, map_rows) + term.center(outline, fillchar=" "))
+        print(term.move_xy(0, 1 + map_rows - 1) + term.center(outline, fillchar=" "))
 
     def draw_map_area(self, map_str: str):
         if len(map_str) != 36 * 74:
@@ -29,12 +29,12 @@ class UI:
     
     def draw_status_bar(self):
         # Define the line number for the status bar
-        bar_y = self.map_height - 5
+        bar_y = self.map_height - 4
         stats = f"{term.red}Health: {global_game_state.player.health}/{global_game_state.player.hpmax}{term.gold}    Gold:{global_game_state.player.money}{term.deepskyblue}    Location:{global_game_state.player.location}{term.snow}" 
         print(term.snow + term.move_xy(0, bar_y + 1) + term.center(stats, fillchar="-"))
 
     def draw_action_menu(self):
-        menu_y = self.map_height - 4
+        menu_y = self.map_height - 3
     
         prompt = f"{term.height} + {term.width}"
         choices = "1) Move North   2) Check Inventory   3) Wait"
