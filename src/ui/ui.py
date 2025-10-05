@@ -20,9 +20,9 @@ class UI:
         print(term.move_xy(0, map_rows) + term.center(outline, fillchar=" "))
 
     def draw_map_area(self, map_str: str):
-        if len(map_str) != 36 * 74:
-            raise ValueError("map_str must be exactly 2664 characters (36 rows of 74 columns) got " + str(len(map_str)))
-        for row in range(36):
+        if len(map_str) != 35 * 74:
+            raise ValueError("map_str must be exactly 2590 characters (35 rows of 74 columns) got " + str(len(map_str)))
+        for row in range(35):
             line = "|" + map_str[row * 74:(row + 1) * 74] + "|"
             print(term.move_xy(0, 2 + row) + term.center(line, fillchar=" "))
         
@@ -41,6 +41,8 @@ class UI:
     
         print(term.move_xy(2, menu_y + 1) + term.bold(prompt))
         print(term.move_xy(2, menu_y + 2) + choices)
+
+    
 
 
 
