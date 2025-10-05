@@ -33,28 +33,9 @@ class GameEngine:
 
     def is_running(self):
         return self.running
-<<<<<<< HEAD
-
-def initialize():
-    if db.is_closed():
-        db.connect()
-    db.create_tables([Player])
-
-    player = Player.select().first()
-    if not player:
-        player = Player(name="Hero", level=0, experience=0)
-        player.save()
-
-    print(f"Welcome back, {player.name}!")
-    renderer = UI(player)
-    renderer.draw_map_area()
-    renderer.draw_status_bar()
-    renderer.draw_action_menu()
-=======
     
     def render(self):
         renderer = UI(self.player)
         renderer.draw_map_area()
         renderer.draw_status_bar()
         renderer.draw_action_menu()
->>>>>>> 191de0f0886fa5bfde0cddd6793cbf2d659def56
