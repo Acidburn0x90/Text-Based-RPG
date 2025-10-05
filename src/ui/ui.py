@@ -9,9 +9,8 @@ class UI:
         self.map_height = 42
 
 
-    def draw_map_area(self):
-
-        print(term.home + term.clear + term.move_y(0)) # Move to the top
+    def draw_map_outline(self):
+        print(term.home + term.clear + term.move_y(0))
         map_rows = 37
         map_cols = 75
         outline = "+" + "-" * (map_cols - 2) + "+"
@@ -20,6 +19,13 @@ class UI:
             line = "|" + " " * (map_cols - 2) + "|"
             print(term.move_xy(0, 2 + i) + term.center(line, fillchar=" "))
         print(term.move_xy(0, map_rows) + term.center(outline, fillchar=" "))
+
+    def draw_map_area(self, map_str: str):
+        if len(map_str) != 36 * 74:
+            raise ValueError("map_str must be exactly 2664 characters (36 rows of 74 columns)")
+        for row in range(36):
+            line = "|" + map_str[row * 74:(row + 1) * 74] + "|"
+            print(term.move_xy(0, 2 + row) + term.center(line, fillchar=" "))
         
     
     def draw_status_bar(self):

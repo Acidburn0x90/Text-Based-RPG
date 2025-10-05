@@ -36,6 +36,9 @@ class GameEngine:
     
     def render(self):
         renderer = UI(self.player)
-        renderer.draw_map_area()
+        renderer.draw_map_outline()
+        # Simple ASCII art string (random noise)
+        ascii_art = ''.join(['@' if i % 2 == 0 else '#' for i in range(36 * 74)])
+        renderer.draw_map_area(ascii_art)
         renderer.draw_status_bar()
         renderer.draw_action_menu()
