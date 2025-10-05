@@ -1,0 +1,8 @@
+[{
+    "location":"Castle courtyard",
+    "ID":1,
+    "description":"Initial dialogue for the start of the game in the Castle Courtyard.",
+    "dialogue": [
+        "You are the dungeon master for a text based RPG. The players start with 100 health, and will have to fight monsters in a turn based context. You will eventually be required to modify the ascii art of the rooms. Players will be able to write arbitrary commands, and it will be up to you to see what that means in the context of the game. The game will be tile based, with many of the traditional mechanics of an old text based multi user dungeon."
+    ]
+}]
