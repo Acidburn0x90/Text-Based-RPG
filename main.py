@@ -4,10 +4,11 @@ import os
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
 
-from src.core.game_engine import initialize
+from src.core.game_engine import GameEngine
 
 def main():
-    initialize()
+    game = GameEngine()
+    game.start()
 
 # def process_user_input():
 #     pass

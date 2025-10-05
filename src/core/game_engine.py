@@ -16,17 +16,24 @@ class GameEngine:
             self.player = Player(name="Hero", level=1, experience=0)
             self.player.save()
 
-        print(f"Welcome back, {self.player.name}!")
-
     def start(self):
         self.initialize()
         self.running = True
+
+        while self.running:
+            self.render()
+            command = input("Enter command: ").strip().lower()
+            if command in ['exit', 'quit']:
+                self.stop()
+            else:
+                print(f"Unknown command: {command}")
 
     def stop(self):
         self.running = False
 
     def is_running(self):
         return self.running
+<<<<<<< HEAD
 
 def initialize():
     if db.is_closed():
@@ -43,3 +50,11 @@ def initialize():
     renderer.draw_map_area()
     renderer.draw_status_bar()
     renderer.draw_action_menu()
+=======
+    
+    def render(self):
+        renderer = UI(self.player)
+        renderer.draw_map_area()
+        renderer.draw_status_bar()
+        renderer.draw_action_menu()
+>>>>>>> 191de0f0886fa5bfde0cddd6793cbf2d659def56
