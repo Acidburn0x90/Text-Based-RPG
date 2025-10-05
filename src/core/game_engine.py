@@ -10,3 +10,5 @@ def initialize():
         user.save()
 
     print(f"Welcome back, {user.name}!")
+    renderer = UI()
+    renderer.draw_map_area()
