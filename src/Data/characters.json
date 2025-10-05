@@ -1,0 +1,13 @@
+[{
+    "name":"Bad Guy 1",
+    "ID":1,
+    "description":"A scruffy-looking ruffian with a mean glint in his eye. He looks like he's spoiling for a fight.",
+    "items":["unarmed", "potion"],
+    "HP":10
+},{
+    "name":"Boss",
+    "ID":2,
+    "description":"A towering, grotesque creature, all muscle and malice, stands in the center, its eyes fixed on you.",
+    "items":["dagger", "potion"],
+    "HP":20
+}]

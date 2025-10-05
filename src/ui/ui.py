@@ -10,18 +10,18 @@ class UI:
 
     def draw_map_outline(self):
         print(term.home + term.clear + term.move_y(0))
-        map_rows = min(37, term.height - 5)  # Ensure outline fits in terminal
+        map_rows = 37
         map_cols = 75
         outline = "+" + "-" * (map_cols - 2) + "+"
         print(term.move_xy(0, 1) + term.center(outline, fillchar=" "))
         for i in range(map_rows - 2):
             line = "|" + " " * (map_cols - 2) + "|"
             print(term.move_xy(0, 2 + i) + term.center(line, fillchar=" "))
-        print(term.move_xy(0, 1 + map_rows - 1) + term.center(outline, fillchar=" "))
+        print(term.move_xy(0, map_rows) + term.center(outline, fillchar=" "))
 
     def draw_map_area(self, map_str: str):
         if len(map_str) != 36 * 74:
-            raise ValueError(f"map_str must be exactly 2664 characters (36x74), but got {len(map_str)}")
+            raise ValueError("map_str must be exactly 2664 characters (36 rows of 74 columns)")
         for row in range(36):
             line = "|" + map_str[row * 74:(row + 1) * 74] + "|"
             print(term.move_xy(0, 2 + row) + term.center(line, fillchar=" "))
@@ -29,15 +29,18 @@ class UI:
     
     def draw_status_bar(self):
         # Define the line number for the status bar
-        bar_y = self.map_height - 4
+        bar_y = self.map_height - 5
         stats = f"{term.red}Health: {global_game_state.player.health}/{global_game_state.player.hpmax}{term.gold}    Gold:{global_game_state.player.money}{term.deepskyblue}    Location:{global_game_state.player.location}{term.snow}" 
         print(term.snow + term.move_xy(0, bar_y + 1) + term.center(stats, fillchar="-"))
 
     def draw_action_menu(self):
-        menu_y = self.map_height - 3
+        menu_y = self.map_height - 4
     
         prompt = f"{term.height} + {term.width}"
         choices = "1) Move North   2) Check Inventory   3) Wait"
     
         print(term.move_xy(2, menu_y + 1) + term.bold(prompt))
         print(term.move_xy(2, menu_y + 2) + choices)
+
+
+
