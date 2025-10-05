@@ -1,25 +1,16 @@
-from peewee import *
-from ai.core import streamText
-from ai.model import google
+import sys
 import os
 import asyncio
 from UI import UI
 
 
-db = SqliteDatabase('game.db')
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
 
-class BaseModel(Model):
-    class Meta:
-        database = db
-
-class Player(BaseModel):
-    name = CharField()
-    level = IntegerField(default=1)
-    experience = IntegerField(default=0)
-
+from src.core.game_engine import initialize
 
 def main():
-    asyncio.run(initialize_from_persist_environment())
+    initialize()
+    
     #This is the main game loop, as of not the global DB will be used.
     while True:
      #This will halt until user input is received
@@ -29,7 +20,6 @@ def main():
      persist_environment()
      persist_environment()
 
-    
 async def initialize_from_persist_environment():
     db.connect()
     db.create_tables([Player])
@@ -49,7 +39,6 @@ async def initialize_from_persist_environment():
 
 
     #Get secrets from .env 
-
 def process_user_input():
     pass
 
