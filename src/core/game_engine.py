@@ -40,4 +40,6 @@ def initialize():
 
     print(f"Welcome back, {player.name}!")
     renderer = UI(player)
+    renderer.draw_map_area()
     renderer.draw_status_bar()
+    renderer.draw_action_menu()
