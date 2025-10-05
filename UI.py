@@ -1,11 +1,8 @@
 ﻿import blessed
-
 term = blessed.Terminal()
-
 class UI:
-    def __init__(self, terminal, player):
-        self.term = terminal
-        self.player = player
+    def __init__(self):
+        pass
 
     def draw_map_area():
         map_height = term.height - 6
@@ -28,3 +25,6 @@ class UI:
     
         print(term.move_xy(2, menu_y + 1) + term.bold(prompt))
         print(term.move_xy(2, menu_y + 2) + choices)
+
+
+

@@ -3,6 +3,8 @@ from ai.core import streamText
 from ai.model import google
 import os
 import asyncio
+from UI import UI
+
 
 db = SqliteDatabase('game.db')
 
@@ -41,18 +43,11 @@ async def initialize_from_persist_environment():
 
     print(f"Welcome back, {user.name}!")
 
-    os.environ["OPENAI_API_KEY"] = "your-api-key"
+    renderer = UI()
+    renderer.draw_map_area()
 
-    async for chunk in streamText(
-        model=google("gemini-2.0-flash-exp"),
-        systemMessage="You are a creative writer.",
-        prompt="Write a short story about a robot."
-    ):
-        # chunk format: "0:{"text content"}\n"
-        if chunk.startswith("0:"):
-            import json
-            text = json.loads(chunk[2:])
-            print(text, end="", flush=True)
+
+
     #Get secrets from .env 
 
 def process_user_input():
